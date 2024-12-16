@@ -11,7 +11,7 @@ pipeline {
                 script {
                     // Cambia el directorio y realiza git pull en un solo paso
                     sh '''
-                    cd /home/ecommerce-strapi/ecommerce-strapi-backend
+                    cd /home/ecommerce-strapi-backend
                     git pull
                     '''
                 }
