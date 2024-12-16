@@ -6,12 +6,24 @@ pipeline {
     }
   
     stages {
+        stage('Configurar Git Safe Directory') {
+            steps {
+                script {
+                    // Agregar la ruta del directorio a los "safe directories"
+                    sh '''
+                    git config --global --add safe.directory /home/ecommerce-strapi-backend
+                    '''
+                }
+            }
+        }
+
         stage('Aplicar cambios') {
             steps {
                 script {
-                    // Cambia el directorio y realiza git pull en un solo paso
+                    // Hacer git pull después de configurar el safe.directory
                     sh '''
                     cd /home/ecommerce-strapi-backend
+                    echo "Haciendo git pull"
                     git pull
                     '''
                 }
@@ -20,7 +32,7 @@ pipeline {
 
         stage("Finish") {
             steps {
-                sh "echo final FINAL"
+                sh "echo 'Pipeline completado correctamente!'"
             }
         }
     }
