@@ -1,20 +1,27 @@
 pipeline {
-  
-    agent any 
+    agent any
   
     tools { 
-        nodejs "nodeversion18"
+        nodejs "nodeversion18" // Asegúrate de que "nodeversion18" esté configurado en Jenkins
     }
   
-    stages {     
+    stages {
         stage('Aplicar cambios') {
-            sh 'cd /home/ecommerce-strapi/ecommerce-strapi-backend'
-            sh 'git pull'
+            steps {
+                script {
+                    // Cambia el directorio y realiza git pull en un solo paso
+                    sh '''
+                    cd /home/ecommerce-strapi/ecommerce-strapi-backend
+                    git pull
+                    '''
+                }
+            }
         }
 
-    stage("Finish") {
-          steps{
-              sh "echo final FINAL"
-          }
-      }    
+        stage("Finish") {
+            steps {
+                sh "echo final FINAL"
+            }
+        }
+    }
 }
