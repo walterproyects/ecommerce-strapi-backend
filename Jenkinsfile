@@ -9,7 +9,6 @@ pipeline {
         stage('Aplicar cambios') {
             steps {
                 sh '''
-                git config --global --add safe.directory /home/ecommerce-strapi-backend
                 cd /home/ecommerce-strapi-backend
                 git pull 
                 '''
